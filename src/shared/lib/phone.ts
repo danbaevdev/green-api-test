@@ -1,4 +1,4 @@
-const MIN_DIGITS = 10
+const MIN_DIGITS = 7
 const MAX_DIGITS = 15
 
 export const MAX_PHONE_LENGTH = MAX_DIGITS

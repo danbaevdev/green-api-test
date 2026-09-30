@@ -10,7 +10,7 @@ import type {
 const RECEIVE_TIMEOUT_SEC = 5
 
 const HTTP_ERRORS: Record<number, string> = {
-  400: 'Некорректный запрос (проверьте номер получателя)',
+  400: 'Некорректные данные запроса (проверьте номер получателя)',
   401: 'Неверные idInstance или apiTokenInstance',
   403: 'Доступ запрещён: проверьте тариф и авторизацию инстанса',
   429: 'Слишком много запросов, повторите позже',
@@ -65,6 +65,15 @@ export const createGreenApi = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
       }),
+
+    isRegistered: async (phoneNumber) => {
+      const { existsWhatsapp } = await request<{ existsWhatsapp: boolean }>(url('checkWhatsapp'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: Number(phoneNumber) }),
+      })
+      return existsWhatsapp
+    },
 
     getContactInfo: (chatId) =>
       request<ContactInfo>(url('getContactInfo'), {

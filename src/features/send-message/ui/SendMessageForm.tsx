@@ -5,7 +5,7 @@ import styles from './SendMessageForm.module.css'
 
 export const SendMessageForm = ({ chatId }: { chatId: string }) => {
   const [text, setText] = useState('')
-  const { send, isSending, error } = useSendMessage(chatId)
+  const { send, isSending } = useSendMessage(chatId)
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -16,7 +16,6 @@ export const SendMessageForm = ({ chatId }: { chatId: string }) => {
 
   return (
     <div className={styles.wrapper}>
-      {error && <p className={styles.error}>{error}</p>}
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           value={text}

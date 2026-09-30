@@ -28,12 +28,3 @@
 .input:focus {
   border-color: var(--color-accent);
 }
-
-.invalid {
-  border-color: var(--color-danger);
-}
-
-.error {
-  font-size: var(--font-size-xs);
-  color: var(--color-danger);
-}

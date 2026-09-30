@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { useChats } from '@/entities/chat'
 import { useSession } from '@/entities/session'
+import { useToast } from '@/shared/ui'
 
 export const useSendMessage = (chatId: string) => {
   const { api } = useSession()
   const { dispatch } = useChats()
+  const toast = useToast()
   const [isSending, setIsSending] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
   const send = async (text: string) => {
     if (!api) return false
     setIsSending(true)
-    setError(null)
     try {
       const { idMessage } = await api.sendMessage({ chatId, message: text })
       dispatch({
@@ -26,12 +26,12 @@ export const useSendMessage = (chatId: string) => {
       })
       return true
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Не удалось отправить сообщение')
+      toast.show(e instanceof Error ? e.message : 'Не удалось отправить сообщение', 'error')
       return false
     } finally {
       setIsSending(false)
     }
   }
 
-  return { send, isSending, error }
+  return { send, isSending }
 }

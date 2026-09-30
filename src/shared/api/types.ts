@@ -18,6 +18,8 @@ export interface ContactInfo {
 export interface GreenApi {
   sendMessage: (params: SendMessageParams) => Promise<SendMessageResponse>
   getContactInfo: (chatId: string) => Promise<ContactInfo>
+  /** Server-side check that the phone number has an account. Rejects with 400 for malformed numbers. */
+  isRegistered: (phoneNumber: string) => Promise<boolean>
   /** Resolves `null` when the queue is empty. */
   receiveNotification: (signal?: AbortSignal) => Promise<Notification | null>
   deleteNotification: (receiptId: number) => Promise<unknown>

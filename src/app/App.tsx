@@ -2,6 +2,7 @@ import { ChatProvider } from '@/entities/chat'
 import { SessionProvider, useSession } from '@/entities/session'
 import { ChatPage } from '@/pages/chat/ChatPage'
 import { LoginPage } from '@/pages/login/LoginPage'
+import { ToastProvider } from '@/shared/ui'
 
 const Router = () => {
   const { credentials } = useSession()
@@ -18,6 +19,8 @@ const Router = () => {
 
 export const App = () => (
   <SessionProvider>
-    <Router />
+    <ToastProvider>
+      <Router />
+    </ToastProvider>
   </SessionProvider>
 )

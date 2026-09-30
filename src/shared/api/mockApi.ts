@@ -40,6 +40,8 @@ export const createMockApi = (): GreenApi => {
       return { idMessage }
     },
 
+    isRegistered: async () => true,
+
     getContactInfo: async (chatId) => ({
       name: `Демо ${chatId.split('@')[0].slice(-4)}`,
       contactName: '',

@@ -1,24 +1,16 @@
 import { useState, type FormEvent } from 'react'
-import { useChats } from '@/entities/chat'
-import { MAX_PHONE_LENGTH, isValidPhone, phoneToChatId, toDigits } from '@/shared/lib'
+import { MAX_PHONE_LENGTH } from '@/shared/lib'
 import { Button, Input } from '@/shared/ui'
+import { useCreateChat } from '../model/useCreateChat'
 import styles from './CreateChatForm.module.css'
 
 export const CreateChatForm = () => {
-  const { dispatch } = useChats()
+  const { create, isChecking } = useCreateChat()
   const [phone, setPhone] = useState('')
-  const [error, setError] = useState<string>()
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    if (!isValidPhone(phone)) {
-      setError('Введите номер в международном формате, например 79991234567')
-      return
-    }
-    const digits = toDigits(phone)
-    dispatch({ type: 'chat/opened', chat: { id: phoneToChatId(digits), title: digits } })
-    setPhone('')
-    setError(undefined)
+    if (await create(phone)) setPhone('')
   }
 
   return (
@@ -31,9 +23,10 @@ export const CreateChatForm = () => {
         type="tel"
         inputMode="numeric"
         maxLength={MAX_PHONE_LENGTH}
-        error={error}
       />
-      <Button type="submit">Создать</Button>
+      <Button type="submit" disabled={isChecking || !phone}>
+        {isChecking ? 'Проверяем…' : 'Создать'}
+      </Button>
     </form>
   )
 }
