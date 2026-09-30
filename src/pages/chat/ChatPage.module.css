@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  height: 100%;
+}
+
+/* mobile: master-detail — show either the chat list or the open chat */
+@media (max-width: 768px) {
+  .page[data-view='chat'] > aside,
+  .page[data-view='list'] > section {
+    display: none;
+  }
+}
