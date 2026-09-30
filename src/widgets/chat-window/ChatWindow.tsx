@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { useChats } from '@/entities/chat'
 import { SendMessageForm } from '@/features/send-message'
-import { formatTime } from '@/shared/lib'
+import { chatIdToPhone, dayKey, formatDayLabel, formatTime } from '@/shared/lib'
 import { Avatar, Button } from '@/shared/ui'
 import styles from './ChatWindow.module.css'
 
@@ -36,16 +36,24 @@ export const ChatWindow = () => {
             <path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" />
           </svg>
         </Button>
-        <Avatar name={activeChat.title} src={activeChat.avatarUrl} />
-        {activeChat.title}
+        <Avatar name={activeChat.title} src={activeChat.avatarUrl} size={40} />
+        <div className={styles.who}>
+          <div className={styles.name}>{activeChat.title}</div>
+          <div className={styles.subtitle}>+{chatIdToPhone(activeChat.id)}</div>
+        </div>
       </header>
 
       <div className={styles.messages}>
-        {messages.map((m) => (
-          <div key={m.id} className={`${styles.bubble} ${styles[m.direction]}`}>
-            {m.text}
-            <time className={styles.time}>{formatTime(m.timestamp)}</time>
-          </div>
+        {messages.map((m, i) => (
+          <Fragment key={m.id}>
+            {(i === 0 || dayKey(m.timestamp) !== dayKey(messages[i - 1].timestamp)) && (
+              <div className={styles.day}>{formatDayLabel(m.timestamp)}</div>
+            )}
+            <div className={`${styles.bubble} ${styles[m.direction]}`}>
+              {m.text}
+              <time className={styles.time}>{formatTime(m.timestamp)}</time>
+            </div>
+          </Fragment>
         ))}
         <div ref={bottomRef} />
       </div>

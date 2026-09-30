@@ -21,6 +21,7 @@ export const SendMessageForm = ({ chatId }: { chatId: string }) => {
         <Input
           value={text}
           onChange={(e) => setText(e.target.value)}
+          className={styles.field}
           placeholder="Сообщение"
           aria-label="Сообщение"
         />

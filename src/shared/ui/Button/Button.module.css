@@ -31,7 +31,7 @@
 }
 
 .ghost:hover:not(:disabled) {
-  background: var(--color-surface-muted);
+  background: var(--color-chip);
 }
 
 .icon {

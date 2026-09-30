@@ -1,6 +1,7 @@
 import { useChats } from '@/entities/chat'
 import { useSession } from '@/entities/session'
 import { CreateChatForm } from '@/features/create-chat'
+import { formatChatDate } from '@/shared/lib'
 import { Avatar, Button } from '@/shared/ui'
 import styles from './ChatSidebar.module.css'
 
@@ -23,21 +24,27 @@ export const ChatSidebar = () => {
         <p className={styles.empty}>Введите номер телефона, чтобы начать чат</p>
       ) : (
         <ul className={styles.list}>
-          {chats.map((chat) => (
-            <li key={chat.id}>
-              <button
-                type="button"
-                className={`${styles.item} ${chat.id === activeChat?.id ? styles.active : ''}`}
-                onClick={() => dispatch({ type: 'chat/selected', chatId: chat.id })}
-              >
-                <Avatar name={chat.title} src={chat.avatarUrl} />
-                <div className={styles.info}>
-                  <div className={styles.name}>{chat.title}</div>
-                  <div className={styles.preview}>{lastMessageOf(chat.id)?.text ?? ' '}</div>
-                </div>
-              </button>
-            </li>
-          ))}
+          {chats.map((chat) => {
+            const last = lastMessageOf(chat.id)
+            return (
+              <li key={chat.id}>
+                <button
+                  type="button"
+                  className={`${styles.item} ${chat.id === activeChat?.id ? styles.active : ''}`}
+                  onClick={() => dispatch({ type: 'chat/selected', chatId: chat.id })}
+                >
+                  <Avatar name={chat.title} src={chat.avatarUrl} size={56} />
+                  <div className={styles.info}>
+                    <div className={styles.row}>
+                      <span className={styles.name}>{chat.title}</span>
+                      {last && <span className={styles.date}>{formatChatDate(last.timestamp)}</span>}
+                    </div>
+                    <div className={styles.preview}>{last?.text}</div>
+                  </div>
+                </button>
+              </li>
+            )
+          })}
         </ul>
       )}
     </aside>

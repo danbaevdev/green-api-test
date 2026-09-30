@@ -3,17 +3,15 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  overflow: hidden;
   border-radius: var(--radius-full);
-  background: var(--color-accent);
-  color: var(--color-on-accent);
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-size: calc(var(--avatar-size) * 0.36);
   font-weight: var(--font-weight-bold);
   user-select: none;
-}
-
-.avatar {
-  overflow: hidden;
 }
 
 .image {

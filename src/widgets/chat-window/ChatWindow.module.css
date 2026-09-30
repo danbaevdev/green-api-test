@@ -3,6 +3,7 @@
   flex: 1;
   flex-direction: column;
   min-width: 0;
+  background: var(--color-bg);
 }
 
 .header {
@@ -12,15 +13,30 @@
   padding: var(--space-3) var(--space-4);
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  font-weight: var(--font-weight-medium);
+}
+
+.who {
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .messages {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-4);
+  gap: var(--space-1);
+  padding: var(--space-4) max(var(--space-4), calc((100% - 720px) / 2));
   overflow-y: auto;
 }
 
@@ -32,8 +48,18 @@
   color: var(--color-text-muted);
 }
 
+.day {
+  align-self: center;
+  margin: var(--space-3) 0 var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--color-chip);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
 .bubble {
-  max-width: min(70%, 480px);
+  max-width: min(75%, 520px);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-lg);
   overflow-wrap: anywhere;
@@ -55,9 +81,9 @@
 
 .time {
   display: block;
-  margin-top: var(--space-1);
+  margin-top: 2px;
   font-size: var(--font-size-xs);
-  opacity: 0.7;
+  opacity: 0.6;
   text-align: right;
 }
 
