@@ -5,16 +5,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'ghost'
   iconOnly?: boolean
   block?: boolean
-  /** shows animated stripes and blocks interaction */
-  loading?: boolean
 }
 
 export const Button = ({
   variant = 'primary',
   iconOnly,
   block,
-  loading,
-  disabled,
   className,
   type = 'button',
   ...rest
@@ -24,16 +20,7 @@ export const Button = ({
     styles[variant],
     iconOnly && styles.icon,
     block && styles.block,
-    loading && styles.loading,
     className,
   ]
-  return (
-    <button
-      type={type}
-      className={classes.filter(Boolean).join(' ')}
-      disabled={disabled || loading}
-      aria-busy={loading}
-      {...rest}
-    />
-  )
+  return <button type={type} className={classes.filter(Boolean).join(' ')} {...rest} />
 }

@@ -25,7 +25,7 @@ export const CreateChatForm = () => {
         maxLength={MAX_PHONE_LENGTH}
         disabled={isChecking}
       />
-      <Button type="submit" loading={isChecking} disabled={!phone}>
+      <Button type="submit" disabled={isChecking || !phone}>
         Создать
       </Button>
     </form>

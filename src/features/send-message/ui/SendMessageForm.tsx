@@ -24,7 +24,7 @@ export const SendMessageForm = ({ chatId }: { chatId: string }) => {
           placeholder="Сообщение"
           aria-label="Сообщение"
         />
-        <Button type="submit" iconOnly loading={isSending} disabled={!text.trim()} aria-label="Отправить">
+        <Button type="submit" iconOnly disabled={isSending || !text.trim()} aria-label="Отправить">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
             <path d="M3.4 20.4 21 12 3.4 3.6l-.01 6.5L15 12 3.39 13.9z" />
           </svg>
