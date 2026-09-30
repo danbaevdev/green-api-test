@@ -40,6 +40,12 @@ export const createMockApi = (): GreenApi => {
       return { idMessage }
     },
 
+    getContactInfo: async (chatId) => ({
+      name: `Демо ${chatId.split('@')[0].slice(-4)}`,
+      contactName: '',
+      avatar: '',
+    }),
+
     receiveNotification: async (signal) => {
       const deadline = Date.now() + POLL_TIMEOUT_MS
       while (!queue.length && Date.now() < deadline && !signal?.aborted) {

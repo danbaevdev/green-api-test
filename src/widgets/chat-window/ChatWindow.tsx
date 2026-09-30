@@ -36,7 +36,7 @@ export const ChatWindow = () => {
             <path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" />
           </svg>
         </Button>
-        <Avatar name={activeChat.title} />
+        <Avatar name={activeChat.title} src={activeChat.avatarUrl} />
         {activeChat.title}
       </header>
 

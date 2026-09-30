@@ -30,7 +30,7 @@ export const ChatSidebar = () => {
                 className={`${styles.item} ${chat.id === activeChat?.id ? styles.active : ''}`}
                 onClick={() => dispatch({ type: 'chat/selected', chatId: chat.id })}
               >
-                <Avatar name={chat.title} />
+                <Avatar name={chat.title} src={chat.avatarUrl} />
                 <div className={styles.info}>
                   <div className={styles.name}>{chat.title}</div>
                   <div className={styles.preview}>{lastMessageOf(chat.id)?.text ?? ' '}</div>

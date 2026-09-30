@@ -26,8 +26,8 @@ export const CreateChatForm = () => {
       <Input
         value={phone}
         onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
-        placeholder="Номер телефона получателя"
-        aria-label="Номер телефона получателя"
+        placeholder="Номер телефона"
+        aria-label="Номер телефона"
         type="tel"
         inputMode="numeric"
         maxLength={MAX_PHONE_LENGTH}

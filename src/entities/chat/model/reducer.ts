@@ -5,6 +5,7 @@ export type ChatAction =
   | { type: 'chat/opened'; chat: Chat }
   | { type: 'chat/selected'; chatId: string }
   | { type: 'chat/closed' }
+  | { type: 'chat/profileLoaded'; chatId: string; title?: string; avatarUrl?: string }
   | { type: 'message/added'; message: Message; chatTitle?: string }
 
 export const initialChatState: ChatState = { chats: [], messages: {}, activeChatId: null }
@@ -27,6 +28,20 @@ export const chatReducer = (state: ChatState, action: ChatAction): ChatState => 
 
     case 'chat/selected':
       return { ...state, activeChatId: action.chatId }
+
+    case 'chat/profileLoaded':
+      return {
+        ...state,
+        chats: state.chats.map((chat) =>
+          chat.id === action.chatId
+            ? {
+                ...chat,
+                title: action.title || chat.title,
+                avatarUrl: action.avatarUrl || chat.avatarUrl,
+              }
+            : chat,
+        ),
+      }
 
     case 'chat/closed':
       return { ...state, activeChatId: null }

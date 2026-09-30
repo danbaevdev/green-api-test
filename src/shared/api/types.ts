@@ -6,8 +6,18 @@ export interface Credentials {
   demo?: boolean
 }
 
+export interface ContactInfo {
+  /** profile name set by the contact */
+  name: string
+  /** name saved in the account's own contacts */
+  contactName: string
+  /** avatar image url, empty when hidden/absent */
+  avatar: string
+}
+
 export interface GreenApi {
   sendMessage: (params: SendMessageParams) => Promise<SendMessageResponse>
+  getContactInfo: (chatId: string) => Promise<ContactInfo>
   /** Resolves `null` when the queue is empty. */
   receiveNotification: (signal?: AbortSignal) => Promise<Notification | null>
   deleteNotification: (receiptId: number) => Promise<unknown>

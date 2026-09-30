@@ -12,6 +12,7 @@ export interface Message {
 export interface Chat {
   id: string
   title: string
+  avatarUrl?: string
 }
 
 export interface ChatState {

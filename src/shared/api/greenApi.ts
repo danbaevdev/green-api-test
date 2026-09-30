@@ -1,4 +1,5 @@
 import type {
+  ContactInfo,
   Credentials,
   GreenApi,
   Notification,
@@ -63,6 +64,13 @@ export const createGreenApi = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
+      }),
+
+    getContactInfo: (chatId) =>
+      request<ContactInfo>(url('getContactInfo'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatId }),
       }),
 
     /** Long-polls one notification from the queue; resolves `null` when queue is empty. */
