@@ -1,5 +1,5 @@
 import { createContext, use, useMemo, useState, type ReactNode } from 'react'
-import { createGreenApi, createMockApi, type Credentials, type GreenApi } from '@/shared/api'
+import { createGreenApi, type Credentials, type GreenApi } from '@/shared/api'
 import { readJson, removeKey, writeJson } from '@/shared/lib'
 
 const STORAGE_KEY = 'max-chat:credentials'
@@ -19,7 +19,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo<SessionValue>(
     () => ({
       credentials,
-      api: credentials ? (credentials.demo ? createMockApi() : createGreenApi(credentials)) : null,
+      api: credentials ? createGreenApi(credentials) : null,
       login: (next) => {
         writeJson(STORAGE_KEY, next)
         setCredentials(next)

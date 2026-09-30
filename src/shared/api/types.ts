@@ -2,8 +2,6 @@ export interface Credentials {
   idInstance: string
   apiTokenInstance: string
   apiUrl: string
-  /** offline simulation instead of real GREEN-API */
-  demo?: boolean
 }
 
 export interface ContactInfo {

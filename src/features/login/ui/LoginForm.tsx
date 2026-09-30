@@ -44,13 +44,6 @@ export const LoginForm = () => {
       <Button type="submit" block>
         Войти
       </Button>
-      <Button
-        variant="ghost"
-        block
-        onClick={() => login({ idInstance: 'demo', apiTokenInstance: '', apiUrl: '', demo: true })}
-      >
-        Демо-режим (без GREEN-API)
-      </Button>
     </form>
   )
 }
