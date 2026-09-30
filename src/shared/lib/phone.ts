@@ -1,6 +1,8 @@
 const MIN_DIGITS = 10
 const MAX_DIGITS = 15
 
+export const MAX_PHONE_LENGTH = MAX_DIGITS
+
 const RU_LOCAL_PREFIX = /^8(\d{10})$/
 
 /** Digits only; Russian local format 8XXXXXXXXXX becomes international 7XXXXXXXXXX. */

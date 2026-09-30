@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useChats } from '@/entities/chat'
-import { isValidPhone, phoneToChatId, toDigits } from '@/shared/lib'
+import { MAX_PHONE_LENGTH, isValidPhone, phoneToChatId, toDigits } from '@/shared/lib'
 import { Button, Input } from '@/shared/ui'
 import styles from './CreateChatForm.module.css'
 
@@ -25,10 +25,12 @@ export const CreateChatForm = () => {
     <form className={styles.form} onSubmit={handleSubmit}>
       <Input
         value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
         placeholder="Номер телефона получателя"
         aria-label="Номер телефона получателя"
-        inputMode="tel"
+        type="tel"
+        inputMode="numeric"
+        maxLength={MAX_PHONE_LENGTH}
         error={error}
       />
       <Button type="submit">Создать</Button>
