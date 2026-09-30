@@ -20,7 +20,7 @@ body {
   font-size: var(--font-size-md);
   color: var(--color-text);
   background: var(--color-bg);
-  color-scheme: dark;
+  color-scheme: light dark;
   -webkit-font-smoothing: antialiased;
 }
 

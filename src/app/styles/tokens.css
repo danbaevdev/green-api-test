@@ -1,9 +1,15 @@
 :root {
   /* color: palette */
-  --color-blue-500: #3b82f6;
   --color-blue-400: #6ea8ff;
+  --color-blue-500: #3b82f6;
   --color-blue-600: #2f6fe0;
   --color-red-500: #ef5350;
+  --color-white: #ffffff;
+  --color-snow-50: #f4f5f8;
+  --color-snow-100: #eceef3;
+  --color-snow-300: #d5d8e0;
+  --color-snow-500: #7b8494;
+  --color-snow-900: #15181d;
   --color-ink-950: #131418;
   --color-ink-900: #1a1b20;
   --color-ink-800: #212228;
@@ -13,24 +19,25 @@
   --color-ink-50: #f2f3f5;
   --color-indigo-700: #3c4262;
 
-  /* color: semantic */
-  --color-bg: var(--color-ink-950);
-  --color-surface: var(--color-ink-900);
-  --color-surface-muted: var(--color-ink-700);
-  --color-surface-hover: var(--color-ink-800);
-  --color-border: var(--color-ink-800);
-  --color-border-strong: var(--color-ink-600);
-  --color-text: var(--color-ink-50);
-  --color-text-muted: var(--color-ink-300);
+  /* color: semantic (light is the default) */
+  --color-bg: var(--color-snow-50);
+  --color-surface: var(--color-white);
+  --color-surface-muted: var(--color-snow-100);
+  --color-surface-hover: var(--color-snow-50);
+  --color-border: var(--color-snow-100);
+  --color-border-strong: var(--color-snow-300);
+  --color-text: var(--color-snow-900);
+  --color-text-muted: var(--color-snow-500);
   --color-accent: var(--color-blue-500);
   --color-accent-hover: var(--color-blue-600);
-  --color-on-accent: #ffffff;
-  --color-link: var(--color-blue-400);
+  --color-on-accent: var(--color-white);
+  --color-link: var(--color-blue-600);
   --color-danger: var(--color-red-500);
-  --color-bubble-in: var(--color-ink-700);
-  --color-bubble-out: var(--color-indigo-700);
-  --color-on-bubble-out: #ffffff;
-  --color-chip: rgb(255 255 255 / 10%);
+  --color-bubble-in: var(--color-white);
+  --color-bubble-out: var(--color-blue-500);
+  --color-on-bubble-out: var(--color-white);
+  --color-chip: rgb(21 24 29 / 6%);
+  --shadow-card: 0 8px 32px rgb(21 24 29 / 8%);
 
   /* spacing */
   --space-1: 4px;
@@ -57,9 +64,26 @@
   --font-weight-bold: 600;
 
   /* elevation */
-  --shadow-card: 0 8px 32px rgb(0 0 0 / 40%);
 
   /* layout */
   --sidebar-width: 390px;
   --transition-fast: 120ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--color-ink-950);
+    --color-surface: var(--color-ink-900);
+    --color-surface-muted: var(--color-ink-700);
+    --color-surface-hover: var(--color-ink-800);
+    --color-border: var(--color-ink-800);
+    --color-border-strong: var(--color-ink-600);
+    --color-text: var(--color-ink-50);
+    --color-text-muted: var(--color-ink-300);
+    --color-link: var(--color-blue-400);
+    --color-bubble-in: var(--color-ink-700);
+    --color-bubble-out: var(--color-indigo-700);
+    --color-chip: rgb(255 255 255 / 10%);
+    --shadow-card: 0 8px 32px rgb(0 0 0 / 40%);
+  }
 }
