@@ -29,6 +29,7 @@ input,
 textarea {
   font: inherit;
   color: inherit;
+  -webkit-tap-highlight-color: transparent; /* no rectangular flash on tap in mobile browsers */
 }
 
 @media (max-width: 768px) {
